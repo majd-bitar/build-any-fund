@@ -1,0 +1,123 @@
+/* File: proposal/styles.module.css */
+
+/* --- existing wrapper, background, cardsContainer, card, card1/2/3, icon, cardTitle --- */
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+}
+
+.background {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.cardsContainer {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.card {
+  flex: 1 1 auto;
+  width: clamp(180px, 45vw, 300px);
+  min-height: 260px;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px);
+  animation:
+    fadeInUp 0.8s ease forwards,
+    float    6s ease-in-out infinite;
+}
+
+.card1 {
+  background: linear-gradient(135deg, #ffffff 0%, #c084fc 30%);
+}
+.card2 {
+  background: linear-gradient(135deg, #c084fc 30%, #818cf8 65%);
+}
+.card3 {
+  background: linear-gradient(135deg, #818cf8 65%, #38bdf8 100%);
+}
+
+.icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.cardTitle {
+  margin: 0.5rem 0 1rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* --- NEW BUTTON STYLES --- */
+.learnMoreButton {
+  margin-top: auto;                   /* push to bottom of card */
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background-color: #ffffffdd;        /* solid enough to stand out */
+  color: #333;
+  border: 2px solid #fff;
+  border-radius: 0.75rem;             /* pill shape */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+  width: auto;
+  max-width: 80%;
+}
+
+/* Hover */
+.learnMoreButton:hover {
+  background-color: #ffffff;
+  transform: translateY(-2px);
+}
+
+/* Entry & float animations */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);     }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0);   }
+  50%     { transform: translateY(-8px); }
+}
+
+/* Small-screen stacking */
+@media (max-width: 600px) {
+  .cardsContainer {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .wrapper {
+    align-items: flex-start;
+  }
+  .learnMoreButton {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}
