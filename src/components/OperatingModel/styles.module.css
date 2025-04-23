@@ -1,14 +1,17 @@
-/* File: src/pages/Proposal/styles.module.css */
+/* File: src/pages/OperatingModel/styles.module.css */
 
-/* — Top‐level wrapper + fixed background — */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@400;700;900&display=swap');
+
 .pageWrapper {
+  font-family: 'Fira Sans Condensed', sans-serif;
   position: relative;
   width: 100%;
   min-height: 100vh;
   overflow-x: hidden;
-  overflow-y: auto;
-  background: #000;
+  background: #010101;
 }
+
+/* Background spline */
 .background {
   position: fixed;
   inset: 0;
@@ -16,138 +19,150 @@
   pointer-events: none;
 }
 
-/* — Page container (centers content) — */
-.page {
+/* Foreground content wrapper */
+.content {
   position: relative;
-  z-index: 10;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem;
-  box-sizing: border-box;
-  color: #fff;
-  text-align: center;
+  z-index: 1;
 }
 
-/* — Back button — */
 .back {
   position: fixed;
   top: 1rem;
   left: 1rem;
+  z-index: 10;
   display: flex;
   align-items: center;
   background: none;
   border: none;
   color: #a855f7;
-  font-size: 1.25rem;
-  font-weight: 500;
+  font-weight: 700;
   cursor: pointer;
-  z-index: 20;
 }
 .backIcon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 0.5rem;
+  margin-right: 0.4rem;
 }
 
-/* — 1) OPERATING MODEL TITLE — */
 .title {
-  display: inline-block;               /* shrink to fit content */
-  margin: 4rem auto 2rem;              /* centered with breathing room */
-  padding: 1rem 2rem;                  /* generous padding */
-  font-size: 3rem;                     /* extra large */
-  font-weight: 800;
+  margin: 4rem auto 2rem;
   color: #6b21a8;
-
-  background: rgba(168, 85, 247, 0.15);  /* pale purple fill */
-  border-left: 8px solid #a855f7;        /* thick purple stripe */
-  border-radius: 0.75rem;                /* rounded corners */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.1); /* subtle lift */
+  font-size: 3rem;
+  font-weight: 900;
   text-align: center;
 }
 
-/* — 2) SECTION TITLES — full width boxes, smaller font — */
 .section {
-  margin-bottom: 3rem;
+  padding: 2rem 1rem;
 }
 .sectionTitle {
-  display: block;                      /* full-width */
-  width: 100%;
-  margin: 2rem 0 1rem;                 /* vertical spacing */
-  padding: 0.5rem 1rem;                /* modest padding */
-  font-size: 1.5rem;                   /* smaller than main title */
-  font-weight: 600;
   color: #6b21a8;
-  background: rgba(168,85,247,0.1);
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
   border-left: 4px solid #a855f7;
-  border-radius: 0.5rem;
-  box-sizing: border-box;
-  text-align: left;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-/* alternate accent for second section */
-.section:nth-of-type(2) .sectionTitle {
-  color: #3b82f6;
-  background: rgba(59,130,246,0.1);
-  border-left-color: #3b82f6;
+  padding-left: 0.75rem;
 }
 
-/* — Card grid — */
-.cardList {
+.timelineWrapper {
+  position: relative;
+  margin-left: 2rem;
+  padding-left: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.timelineItem {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-  justify-content: center;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  transition: transform 0.2s;
+}
+.timelineItem:hover {
+  transform: translateY(-3px);
 }
 
-/* — bottom padding — */
-.page::after {
-  content: '';
-  display: block;
+.timelineIcon {
+  position: absolute;
+  left: -2.6rem;
+  top: 0;
+  background: #1f1f1f;
+  border: 2px solid #6b21a8;
+  border-radius: 50%;
+  width: 2rem;
   height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
 }
 
-/* — RESPONSIVE — */
-@media (max-width: 1000px) {
-  .page {
-    padding: 1.5rem;
+.timelineContent {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(8px);
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  flex: 1;
+}
+
+.itemTitle {
+  margin: 0 0 0.5rem;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  transition: font-weight 0.2s;
+}
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  color: #ddd;
+  transition: font-weight 0.2s;
+}
+.itemList li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+.itemList li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: #a855f7;
+}
+
+.timelineItem:hover .itemTitle,
+.timelineItem:hover .itemList li {
+  font-weight: 900;
+}
+
+@media (max-width: 768px) {
+  .timelineWrapper {
+    margin-left: 1rem;
+    padding-left: 0.75rem;
+  }
+  .timelineIcon {
+    left: -2.2rem;
+    width: 1.75rem;
+    height: 1.75rem;
   }
   .title {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     margin: 3rem auto 1.5rem;
-    padding: 0.8rem 1.8rem;
-    border-left-width: 6px;
   }
   .sectionTitle {
     font-size: 1.4rem;
-    padding: 0.45rem 0.8rem;
   }
 }
-
-@media (max-width: 600px) {
-  .page {
-    padding: 1rem;
-  }
+@media (max-width: 480px) {
   .back {
-    top: 0.75rem;
-    left: 0.75rem;
-    font-size: 1.1rem;
-  }
-  .backIcon {
-    width: 1.2rem;
-    height: 1.2rem;
+    top: 0.8rem;
+    left: 0.8rem;
+    font-size: 0.95rem;
   }
   .title {
-    font-size: 2.2rem;
-    margin: 2rem auto 1rem;
-    padding: 0.6rem 1.2rem;
-    border-left-width: 5px;
+    font-size: 2rem;
+    margin: 2.5rem auto 1rem;
   }
-  .sectionTitle {
-    font-size: 1.3rem;
-    margin: 1.5rem 0 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
-  .cardList {
-    gap: 1.5rem;
+  .itemTitle {
+    font-size: 1.1rem;
   }
 }
