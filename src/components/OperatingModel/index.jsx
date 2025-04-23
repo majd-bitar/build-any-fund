@@ -63,7 +63,7 @@ const techFeatures = [
     items: [
       'AI‑generated docs (GPT4 + LexisNexis/LawGeex)',
       'Templates: LPA, PPM, Subscription Agreement',
-      ''
+      
     ],
   },
   {
@@ -72,7 +72,7 @@ const techFeatures = [
     items: [
       'APIs: Emirates NBD, ADCB, Mashreq Neo, Cayman National, SEBA',
       'Multicurrency accounts via Railsr, Stripe Treasury, Swan',
-      ''
+      
     ],
   },
   {
@@ -91,7 +91,7 @@ const techFeatures = [
       'Secure deal room',
       'Optional blockchain tokenization',
       'Automated capital calls & distributions',
-      ''
+      
     ],
   },
 ];

@@ -1,7 +1,6 @@
 /* File: proposal/styles.module.css */
 
-/* --- existing wrapper, background, cardsContainer, card, card1/2/3, icon, cardTitle --- */
-
+/* --- existing styles --- */
 .wrapper {
   position: relative;
   width: 100%;
@@ -73,16 +72,15 @@
   text-align: center;
 }
 
-/* --- NEW BUTTON STYLES --- */
 .learnMoreButton {
-  margin-top: auto;                   /* push to bottom of card */
+  margin-top: auto;
   display: inline-block;
   padding: 0.5rem 1rem;
   font-size: 0.9rem;
-  background-color: #ffffffdd;        /* solid enough to stand out */
+  background-color: #ffffffdd;
   color: #333;
   border: 2px solid #fff;
-  border-radius: 0.75rem;             /* pill shape */
+  border-radius: 0.75rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
   cursor: pointer;
   transition: background-color 0.2s ease, transform 0.2s ease;
@@ -90,14 +88,11 @@
   width: auto;
   max-width: 80%;
 }
-
-/* Hover */
 .learnMoreButton:hover {
   background-color: #ffffff;
   transform: translateY(-2px);
 }
 
-/* Entry & float animations */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0);     }
@@ -107,14 +102,23 @@
   50%     { transform: translateY(-8px); }
 }
 
-/* Small-screen stacking */
+/* ———————————————————————————— */
+/* 1) Under 1000px: nudge cards down so they clear the title */
+@media (max-width: 1000px) {
+  .cardsContainer {
+    margin-top: 4rem;     /* push cards lower under the heading */
+  }
+}
+
+/* 2) Under 600px: stack vertically, further push down, enable scrolling */
 @media (max-width: 600px) {
   .cardsContainer {
     flex-direction: column;
     gap: 1rem;
+    margin-top: 15rem;     /* extra space so cards start below the fixed title */
   }
   .wrapper {
-    align-items: flex-start;
+    align-items: flex-start;  /* let content scroll under title */
   }
   .learnMoreButton {
     padding: 0.4rem 0.8rem;
